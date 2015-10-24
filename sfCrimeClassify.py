@@ -32,12 +32,12 @@ def classify(row):
     district = row['PdDistrict']
 
     #likelihoods for the given attributes
-    likelihood_hour2 = likelihood_hour[hour]
-    likelihood_dow2 = likelihood_dow[dow]
-    likelihood_district2 = likelihood_district[district]
+    likelihood_hour_sub = likelihood_hour[hour]
+    likelihood_dow_sub = likelihood_dow[dow]
+    likelihood_district_sub = likelihood_district[district]
 
     #probabilities dataframe for the given attributes
-    probabilities = prior_prob.join(likelihood_hour2, how="inner").join(likelihood_dow2, how="inner").join(likelihood_district2, how="inner")
+    probabilities = prior_prob.join(likelihood_hour_sub, how="inner").join(likelihood_dow_sub, how="inner").join(likelihood_district_sub, how="inner")
     probabilities['Probability'] = probabilities.prod(axis=1)
     probabilities = probabilities.sort('Probability', ascending=False)
 
