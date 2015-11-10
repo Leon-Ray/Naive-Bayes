@@ -38,7 +38,7 @@ def classify(row):
 
     #probabilities dataframe for the given attributes
     probabilities = prior_prob.join(likelihood_hour_sub, how="inner").join(likelihood_dow_sub, how="inner").join(likelihood_district_sub, how="inner")
-    probabilities['Probability'] = probabilities.prod(axis=1)
+    probabilities['Probability'] = probabilities.prod(axis=1) #doesn't include denominator, since it's the same across all classes
     probabilities = probabilities.sort('Probability', ascending=False)
 
     #class label based on the highest probability
